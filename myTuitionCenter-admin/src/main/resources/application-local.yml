@@ -1,0 +1,72 @@
+spring :
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            connection-timeout: 10000
+            maximum-pool-size: 10
+            minimum-idle: 15
+            pool-name: HikariConnectionPool
+      
+        password:
+        url: jdbc:mysql://localhost:3306/mytuitioncenterdb?createDatabaseIfNotExist=true&useSSL=true
+        username: root
+    
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQLDialect
+                format_sql: true
+                id:
+                    new_generator_mappings: false
+    mail:
+       host: smtp.gmail.com
+       port: 587
+       username: mytuitioncenterdev@gmail.com
+       password: vtwo cdrf csms smhd
+       properties:
+         mail:
+           smtp:
+             auth: true
+             starttls:
+               enable: true
+           debug: true
+           
+#  sql:
+#        init:
+#           data-locations: classpath:admin.sql 
+            
+jwt:
+    secret: jwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKey
+    expiry:
+        hour: 24
+       
+
+server:
+   port: 8091
+   
+logging:
+  level:
+    s7:
+      application: WARN
+    org:
+      hibernate:
+         SQL: DEBUG
+  pattern: 
+    file: "%d{yyyy-MM-dd HH:mm:ss} {%thread} %-5level %logger{36} - %msg%n"
+  file: 
+    name : /root/mytuitioncenter_admin/log/mytuitioncenter_admin.log
+
+mytuitioncenter:
+   headerKey: TXlUdXRpb25jZW50ZXJIZWFkZXJLZXlATG9jYWw
+   passwordReset:
+       url: http://localhost:3000/changepassword?token=
+   adminUrl: http://localhost:8091
+   authUrl: http://localhost:8092
+   clientAppUrl: http://localhost:8093
+   headerApiKey: IMONAPIKEY
+   createPassword: http://localhost:8092/mytuitioncenter/createPasswordLink
+   upload-dir: /src/uploads
+

@@ -1,0 +1,63 @@
+spring :
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            connection-timeout: 10000
+            maximum-pool-size: 10
+            minimum-idle: 15
+            pool-name: HikariConnectionPool
+      
+        password: insuranceMonster
+        url: jdbc:mysql://localhost:3306/InsuranceMonsterDB?createDatabaseIfNotExist=true&useSSL=true
+        username: root
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQLDialect
+                format_sql: true
+                id:
+                    new_generator_mappings: false
+           
+    security:
+        user:
+            name: jay
+            password: jay
+        basic:
+            enabled: false 
+ #   sql:
+ #    init:
+ #           data-locations: classpath:client.sql 
+
+            
+jwt:
+    secret: jwtLetYoungEmpowerSecret
+    expiry:
+        hour: 24
+       
+
+server:
+   port: 8093
+   
+logging:
+  level:
+    s7:
+      application: WARN
+    org:
+      springframework:
+        web: ERROR
+    com:
+      snipe:
+        let: DEBUG
+  pattern: 
+    file: "%d{yyyy-MM-dd HH:mm:ss} {%thread} %-5level %logger{36} - %msg%n"
+  file: 
+    name : /root/insurancemonster_auth/log/imon_clientapp.log
+       
+insurancemonster:
+   adminUrl: http://18.61.149.92:8091
+   authUrl: http://18.61.149.92:8092
+   clientAppUrl: http://18.61.149.92.253:8093
+   headerApiKey: IMONAPIKEY

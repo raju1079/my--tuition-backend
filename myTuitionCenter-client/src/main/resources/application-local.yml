@@ -1,0 +1,63 @@
+spring :
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            connection-timeout: 10000
+            maximum-pool-size: 10
+            minimum-idle: 15
+            pool-name: HikariConnectionPool
+      
+        password: root
+        url: jdbc:mysql://localhost:3306/myTuitionCenterDB?createDatabaseIfNotExist=true&useSSL=true
+        username: root
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQLDialect
+                format_sql: true
+                id:
+                    new_generator_mappings: false
+    security:
+     user:
+        name: admin
+        password: admin     
+#    sql:
+#        init:
+#            data-locations: classpath:client.sql 
+            
+jwt:
+    secret: jwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKeyjwtIMonSecretKey
+    expiry:
+        hour: 24
+       
+
+server:
+   port: 8093 
+   
+logging:
+  level:
+    s7:
+      application: WARN
+    org:
+      springframework:
+        security: DEBUG
+        web: ERROR
+        boot:
+        autoconfigure:
+        condition: DEBUG
+    com:
+      snipe:
+        let: DEBUG
+  pattern: 
+    file: "%d{yyyy-MM-dd HH:mm:ss} {%thread} %-5level %logger{36} - %msg%n"
+  file: 
+    name : /root/mytuitioncenter_client/log/tcenter_client.log
+       
+mytuitioncenter:
+   adminUrl: http://localhost:8091
+   authUrl: http://localhost:8092
+   clientAppUrl: http://localhost:8093
+   headerApiKey: MYTCENTERAPIKEY
